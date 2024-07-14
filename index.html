@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Yummy is a website that guides you to different food recipes from all over the world."
+    />
+    <title>main</title>
+    <link rel="icon" href="image/logo (1).png" type="image/*" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-black">
+    <div id="loading">
+      <span class="loader"></span>
+    </div>
+    <header>
+      <nav class="position-fixed top-0 min-vh-100 ">
+        <div class="inner position-relative d-flex min-vh-100">
+          <div class="nav-links bg-black p-4 d-flex flex-column justify-content-between ">
+            <div class="links overflow-hidden">
+              <ul class="list-unstyled text-white ">
+                <li class="mb-3 position-relative" id="Search">Search</li>
+                <li class="mb-3 position-relative" id="Categories">Categories</li>
+                <li class="mb-3 position-relative" id="Area">Area</li>
+                <li class="mb-3 position-relative" id="Ingredients">Ingredients</li>
+                <li class="mb-3 position-relative" id="contact-us">Contact Us</li>
+              </ul>
+            </div>
+            <div class="footer text-white">
+              <div class="icons">
+                  <i class="fa-brands fa-facebook"></i>
+                  <i class="fa-brands fa-twitter"></i>
+                  <i class="fa-solid fa-globe"></i>
+              </div>
+              <div class="text">
+                <p>
+                  Copyright Â© 2019 All Rights <br>Reserved.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="nav-icons bg-white d-flex flex-column justify-content-between align-items-center p-2">
+            <div class="logo">
+              <img src="image/logo (1).png" class="w-100" alt="logo" />
+            </div>
+            <div class="">
+              <i class="fa-solid fa-bars fa-2x"></i>
+              <i class="fa-solid fa-xmark fa-2x d-none"></i>
+            </div>
+            <div class="d-flex flex-column">
+              <i class="fa-solid fa-globe mb-2"></i>
+              <i class="fa-solid fa-share-nodes"></i>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="meals" class="py-5 ps-5">
+        <div class="container">
+          <div id="searchInputs">
+            
+          </div>
+          <div class="row gy-2" id="row-Data">
+
+          </div>
+        </div>
+      </section>
+      <section id="details" class="text-white p-5">
+        <div class="container">
+        </div>
+      </section>
+      <section id="contact" class="d-none">
+        <div class="container">
+          <div class="row p-5">
+            <div class="col-md-6">
+              <input class="form-control mb-3" type="text" id="name" placeholder="Enter Your Name">
+              <p id="alertName" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Username must be between 3 and 10 letters</p>
+              <input class="form-control mb-3" type="email" id="email" placeholder="Enter Your Email">
+              <p id="alertEmail" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Email must be like (agd2@gmail.com)</p>
+              <input class="form-control mb-3" type="text" id="phone" placeholder="Enter Your Phone">
+              <p id="alertphone" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">phone must be like 01230405011</p>
+            </div>
+            <div class="col-md-6">
+              <input class="form-control mb-3" type="number" id="age" placeholder="Enter Your Age">
+              <p id="alertage" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">age must be larger then 13</p>
+              <input class="form-control mb-3" type="password" id="password" placeholder="Enter Your Password">
+              <p id="alertPas" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Password must be between 5 and 20 character</p>
+              <input class="form-control mb-3" type="password" id="repassword" placeholder="Repassword">
+            </div>
+            <button id="submitBtn" class="btn btn-outline-danger w-auto mx-auto" >Submit</button>
+          </div>
+      </div>
+  
+      </section>
+    </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
