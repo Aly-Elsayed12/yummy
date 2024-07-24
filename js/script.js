@@ -3,7 +3,7 @@ let rowData = document.querySelector("#row-Data")
 // loading screen
 
 $(document).ready(function () {
-  $('#loading').fadeOut(1000,()=>{
+  $('#loading').fadeOut(500,()=>{
       $("body").css('overflow','visible');
   });
 });
@@ -14,7 +14,6 @@ $("i.fa-bars").on("click", function(){
     $("nav").animate({"left":"0px"}, 500)
     $("nav .fa-xmark").removeClass("d-none")
     $("i.fa-bars").addClass("d-none")
-
     for(let i =0 ; i <5; i++){
       $(".links li").eq(i).animate({"bottom" : "0px"} , (i + 5) * 100 )
     }
@@ -22,12 +21,15 @@ $("i.fa-bars").on("click", function(){
 
 // close sideBar
 
-$("i.fa-xmark").on("click", function(){
-    $("nav").animate({"left":`-${$(".nav-links").innerWidth()}px`}, 500)
-    $("nav .fa-xmark").addClass("d-none")
-    $("i.fa-bars").removeClass("d-none")
-    $(".links li").animate({"bottom" : "-400px"} , 500)
-})
+
+function closeSideBar(){
+  $("nav").animate({"left":`-${$(".nav-links").innerWidth()}px`}, 500)
+  $("nav .fa-xmark").addClass("d-none")
+  $("i.fa-bars").removeClass("d-none")
+  $(".links li").animate({"bottom" : "-400px"} , 500)
+}
+
+
 let finalData = [] // array to put all meal in it
 
 async function getMeals(){
@@ -48,7 +50,7 @@ function displayMeals(finalData){
                 <img src="${finalData[i].strMealThumb}" id="mealsImg" class="w-100 rounded-3 " alt="">
                 <figcaption id="figcaption" class="rounded-3 position-absolute start-0 w-100 h-100 text-black fw-medium fs-3 p-2 d-flex flex-column gap-3 justify-content-center align-items-center">
                 ${finalData[i].strMeal}
-                <button onClick="displayDetails(${finalData[i].idMeal})" class=" btn btn-warning rounded-3 mx-auto">show details</button>
+                <button onClick="Detalis(${finalData[i].idMeal})" class=" btn btn-warning rounded-3 mx-auto">show details</button>
                 </figcaption>
               </figure>
             </div>
@@ -139,7 +141,8 @@ categories.addEventListener("click", getCategories)
 
 
 
-  async function getCategories(){
+async function getCategories(){
+  closeSideBar()
     let response = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php")
     let data = await response.json()
     finalData = data.categories.slice(0,20)
@@ -148,6 +151,9 @@ categories.addEventListener("click", getCategories)
 
 
 function displayCategories(finalData){
+  sectionContact.classList.add("d-none")
+  sectionContact.classList.remove("d-block")
+  searchInputs.innerHTML = ""
   $(function(){
     $("#loading").fadeOut(1000)
   })
@@ -207,7 +213,6 @@ async function Detalis(id){
 // display detalis for categories and Area and Ingredients
 
 function displayDetails(finalData){
-  console.log(finalData.meals);
   // get Recipes
   let Ingredient =``
   for(let x=1 ; x < 20; x ++){
@@ -228,7 +233,7 @@ function displayDetails(finalData){
   }
       // carton incldue all details about meal
   let cartona = `
-              <div class="row">
+              <div class="row position-relative pb-5">
         <i class="fa-solid fa-xmark fs-3 position-absolute"></i>
         <div class="col-md-4">
           <img src="${finalData.meals[0].strMealThumb}" class="w-100 rounded-3 mx-auto" alt="">
@@ -258,16 +263,18 @@ function displayDetails(finalData){
         </div>
       </div>
   
-
   `
   $("#details .container").html(cartona)
   $("#details").css("display", "block")
-  $("#details i.fa-xmark").on("click" , function(e){
+  rowData.classList.add("d-none")
+  $("#details i.fa-xmark").on("click" , () =>{
     $("#details").css("display", "none")
+    rowData.classList.remove("d-none")
   })
   $(document).on("keydown", function(e) {
     if (e.key === "Escape") {
       $("#details").css("display", "none");
+      rowData.classList.remove("d-none")
     }
   });
 
@@ -280,6 +287,7 @@ Area.addEventListener("click", getarea)
 
 
 async function getarea(){
+  closeSideBar()
     let response = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
     let data = await response.json()
     finalData = data.meals.slice(0,20)
@@ -287,6 +295,9 @@ async function getarea(){
 }
 
 function displayArea(finalData){
+  sectionContact.classList.add("d-none")
+  sectionContact.classList.remove("d-block")
+  searchInputs.innerHTML = ""
   $(function(){
     $("#loading").fadeOut(1000)
   })
@@ -334,6 +345,7 @@ Ingredients.addEventListener("click", getIngredients)
 
 
 async function getIngredients(){
+  closeSideBar()
     let response = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?i=list")
     let data = await response.json()
     finalData = data.meals.slice(0,20)
@@ -342,9 +354,10 @@ async function getIngredients(){
 
 
 function displayIngredients(finalData){
-  $(function(){
-    $("#loading").fadeOut(1000)
-  })
+  sectionContact.classList.add("d-none")
+  sectionContact.classList.remove("d-block")
+  rowData.innerHTML = ""
+  searchInputs.innerHTML = ""
   let cartona = ""
   for (let i = 0; i < finalData.length ; i++) {
     let des = finalData[i].strDescription
@@ -392,6 +405,9 @@ Search.addEventListener("click", getSearch)
 
 
 async function getSearch() {
+  sectionContact.classList.add("d-none")
+  sectionContact.classList.remove("d-block")
+  closeSideBar()
   rowData.innerHTML=""
   searchInputs.innerHTML = `
   <div class="row py-4 ">
@@ -434,7 +450,7 @@ function displaysearchByName(finalData){
 //search By litter
 
 async function searchByLetter(letter){
-  let response = await fetch(`www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+  let response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
   let data = await response.json()
   finalData = data.meals
   displaysearchByLetter(finalData)
@@ -463,6 +479,8 @@ let contact = document.querySelector("#contact-us")
 let sectionContact = document.querySelector("#contact")
 
 contact.addEventListener("click", function(){
+  closeSideBar()
+  searchInputs.innerHTML = ""
   rowData.innerHTML = ""
   sectionContact.classList.remove("d-none")
   sectionContact.classList.add("d-block")
@@ -473,7 +491,8 @@ let nameInput = document.getElementById("name")
 let emailInput = document.getElementById("email")
 let pasInput = document.getElementById("password")
 let ageInput = document.getElementById("age")
-let phoInput = document.getElementById("phone")
+let phoneInput = document.getElementById("phone")
+let rePasInput = document.getElementById("repassword")
 
 
 
@@ -482,14 +501,9 @@ let alertEmail = document.getElementById("alertEmail")
 let alertPas = document.getElementById("alertPas")
 let alertage = document.getElementById("alertage")
 let alertphone = document.getElementById("alertphone")
+let alertRePas = document.getElementById("alertRePas")
 
 
-
-nameInput.addEventListener('input',validName)
-emailInput.addEventListener('input',validEmail)
-pasInput.addEventListener('input', validPas)
-ageInput.addEventListener('input', validage)
-phoInput.addEventListener('input' , phonevalid)
 //   validition
 
 function validName(){
@@ -555,18 +569,35 @@ function validPas(){
     return false
   }
 }
+function validRePas(){
+  if(rePasInput.value ==  pasInput.value){
+    console.log("ok");
+    rePasInput.classList.add("is-valid")
+    rePasInput.classList.remove("is-invalid")
+    alertRePas.classList.add("d-none")
+    alertRePas.classList.remove("d-block")
+    return true
+  }else{
+    console.log("notok");
+    rePasInput.classList.add("is-invalid")
+    rePasInput.classList.remove("is-valid")
+    alertRePas.classList.remove("d-none")
+    alertRePass.classList.add("d-block")
+    return false
+  }
+}
 
 function phonevalid(){
   var regex = /^(010|011|012|015)\d{8}$/
-  if(regex.test(phoInput.value)){
-    phoInputInput.classList.add("is-valid")
-    phoInputInput.classList.remove("is-invalid")
+  if(regex.test(phoneInput.value)){
+    phoneInput.classList.add("is-valid")
+    phoneInput.classList.remove("is-invalid")
     alertphone.classList.add("d-none")
     alertphone.classList.remove("d-block")
     return true
   }else{
-    phoInput.classList.add("is-invalid")
-    phoInput.classList.remove("is-valid")
+    phoneInput.classList.add("is-invalid")
+    phoneInput.classList.remove("is-valid")
     alertphone.classList.remove("d-none")
     alertphone.classList.add("d-block")
     return false
@@ -574,19 +605,23 @@ function phonevalid(){
 }
 
 
-let submitBtn = document.querySelector("#submitBtn")
-submitBtn.addEventListener('click', validateAll);
+let submitBtn = document.querySelector("#submitBtn");
+submitBtn.disabled = true; 
 
-
-function validateAll(){
-  if (validName() == true && ValidAge() == true && validEmail() == true && validPas() == true && phonevalid() ==true) {
-    submitBtn.removeAttribute("disabled");
+function checkValidation() {
+  if (validName() && validage() && validEmail() && validPas() && phonevalid() && validRePas()) {
+    submitBtn.disabled = false;
   } else {
-    submitBtn.setAttribute("disabled");
+    submitBtn.disabled = true;
   }
-
 }
 
+nameInput.addEventListener('input', checkValidation);
+emailInput.addEventListener('input', checkValidation);
+pasInput.addEventListener('input', checkValidation);
+ageInput.addEventListener('input', checkValidation);
+phoneInput.addEventListener('input', checkValidation);
+rePasInput.addEventListener('input', checkValidation);
 
 
 
@@ -643,12 +678,11 @@ function validateAll(){
 
 
 
-$("#contact-us").on("click", function(){
-  console.log("hi");
-  $("#meals").css("display" , "none")
-  $("#contact").removeClass("d-none")
+// $("#contact-us").on("click", function(){
+//   $("#meals").css("display" , "none")
+//   $("#contact").removeClass("d-none")
 
-})
+// })
 
 
 

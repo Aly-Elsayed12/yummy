@@ -14,7 +14,7 @@ nav{
 }
 nav{
   overflow: hidden;
-  z-index: 999;
+  z-index: 9999;
 }
 
 
@@ -22,7 +22,7 @@ nav{
   position: fixed;
   inset: 0;
   background-color: black;
-  z-index: 99999;
+  z-index: 999;
   display: grid;
   place-content: center;
 }
@@ -104,15 +104,18 @@ figure:hover figcaption{
 }
 
 #details{
-  position: fixed;
-  inset: 0;
   background-color: black;
   display: none;
+  margin: 0 auto;
+  width: 70%;
+  height: 100vh;
 }
+
+
 #details .fa-xmark{
   cursor: pointer;
-  top: 5px;
-  left: 60px;
+  top: -30px;
+  left: -50px;
 }
 #contact .inner{
   height: 100vh;
