@@ -1,6 +1,24 @@
 /* body {
   overflow: hidden;
 } */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::selection {
+  background-color: #bab8b8;
+  color: black;
+}
 .logo {
   width: 50px;
 }
@@ -30,57 +48,28 @@ nav {
 }
 
 .loader {
-  color: #fdce10;
-  font-size: 10px;
-  width: 1em;
-  height: 1em;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #fdcd0e;
   border-radius: 50%;
-  position: relative;
-  text-indent: -9999em;
-  animation: mulShdSpin 1.3s infinite linear;
-  transform: translateZ(0);
-  display: block;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
-@keyframes mulShdSpin {
-  0%,
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
   100% {
-    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em,
-      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
-  }
-  12.5% {
-    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em,
-      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-  }
-  25% {
-    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0,
-      0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
-  }
-  37.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em,
-      0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
-  }
-  50% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em,
-      0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
-  }
-  62.5% {
-    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
-      0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
-  }
-  75% {
-    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em,
-      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
-  }
-  87.5% {
-    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
-      0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    transform: rotate(360deg);
   }
 }
 
 figure figcaption {
   background-color: #f9f6f6ca;
-  top: 100%;
+  top: 120%;
   transition: 0.5s;
 }
 
@@ -92,21 +81,38 @@ figure:hover figcaption {
   background-color: black;
   display: none;
   margin: 0 auto;
-  height: 100vh;
 }
 
 #details .fa-xmark {
   cursor: pointer;
   top: -30px;
-  left: -50px;
+  left: 17px;
 }
 #details #img {
   transition: all 0.3s;
   overflow: hidden;
 }
-#details #img:hover > img {
-  transform: scale(1.05);
+#details img {
+  transition: all 0.5s;
 }
+#details #img:hover img {
+  transform: scale(1.08);
+}
+#details #img + h3 {
+  width: fit-content;
+}
+
+#details p#strInstructions {
+  font-size: 15px;
+}
+#details p#strInstructions ~ h3 {
+  font-size: 17px;
+}
+
+#details p#strInstructions ~ h3 span {
+  color: #0dcaf0;
+}
+
 #contact .inner {
   height: 100vh;
 }
