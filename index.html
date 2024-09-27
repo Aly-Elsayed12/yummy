@@ -46,7 +46,7 @@
           </div>
           <div class="nav-icons bg-white d-flex flex-column justify-content-between align-items-center p-2">
             <div class="logo">
-              <img src="image/logo (1).png" class="w-100" alt="logo" />
+              <img src="image/logo (1).png" class="w-100 cursor" alt="logo" onclick="getMeals()" />
             </div>
             <div class="">
               <i class="fa-solid fa-bars fa-2x"></i>
@@ -71,32 +71,37 @@
           </div>
         </div>
       </section>
-      <section id="details" class="text-white p-5 mb-5">
+      
+      <section id="details" class="text-white ps-5 mb-5">
         <div class="container">
           </div>
         </div>
       </section>
+
       <section id="contact" class="d-none">
         <div class="container">
-          <div class="row p-5">
-            <div class="col-md-6">
-              <input class="form-control mb-3" type="text" id="name" placeholder="Enter Your Name">
-              <p id="alertName" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Username must be between 3 and 10 letters</p>
-              <input class="form-control mb-3" type="email" id="email" placeholder="Enter Your Email">
-              <p id="alertEmail" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Email must be like (agd2@gmail.com)</p>
-              <input class="form-control mb-3" type="text" id="phone" placeholder="Enter Your Phone">
-              <p id="alertphone" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">phone must be like 01230405011</p>
-            </div>
-            <div class="col-md-6">
-              <input class="form-control mb-3" type="number" id="age" placeholder="Enter Your Age">
-              <p id="alertage" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">age must be larger then 13</p>
-              <input class="form-control mb-3" type="password" id="password" placeholder="Enter Your Password">
-              <p id="alertPas" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Password must be between 5 and 20 character</p>
-              <input class="form-control mb-3" type="password" id="repassword" placeholder="Repassword">
-              <p id="alertRePas" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">make sure you rewrite the same password</p>
-            </div>
-            <button id="submitBtn" class="btn btn-outline-danger w-auto mx-auto" >Submit</button>
-          </div>
+
+            <form action="" class="row ps-5">
+              <div class="col-md-6 col-10 mx-auto">
+                <input class="form-control mb-3" type="text" id="name" placeholder="Enter Your Name">
+                <p id="alertName" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Username must be between 3 and 10 letters</p>
+                <input class="form-control mb-3" type="email" id="email" placeholder="Enter Your Email">
+                <p id="alertEmail" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Email must be like (agd2@gmail.com)</p>
+                <input class="form-control mb-3" type="text" id="phone" placeholder="Enter Your Phone">
+                <p id="alertphone" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">phone must be like 01230405011</p>
+              </div>
+              <div class="col-md-6 col-10 mx-auto">
+                <input class="form-control mb-3" type="number" id="age" placeholder="Enter Your Age">
+                <p id="alertage" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">age must be larger then 13</p>
+                <input class="form-control mb-3" type="password" id="password" placeholder="Enter Your Password" autocomplete="">
+                <p id="alertPas" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">Password must be between 5 and 20 character</p>
+                <input class="form-control mb-3" type="password" id="repassword" placeholder="Repassword" autocomplete="">
+                <p id="alertRePas" class="mt-2 bg-danger-subtle w-75 mx-auto rounded-3 p-2 d-none">make sure you rewrite the same password</p>
+              </div>
+              <button id="submitBtn" class="btn btn-outline-danger d-block  mx-auto" style="max-width: 150px;" >Submit</button>
+
+            </form>
+
       </div>
   
       </section>
